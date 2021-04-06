@@ -15,19 +15,15 @@ const validarJWT = (req, res = response, next) => {
   try {
     const { uid } = jwt.verify(token, process.env.JWT_SEED);
 
-   
-
     req.uid = uid;
-    
-    next();
 
+    next();
   } catch (error) {
     return res.status(401).json({
       ok: false,
       msg: 'Token no válido',
     });
   }
-
 };
 
 module.exports = {
